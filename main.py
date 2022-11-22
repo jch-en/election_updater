@@ -12,6 +12,7 @@ s = Service("/usr/local/bin/chromedriver")
 driver = webdriver.Chrome(service=s)
 
 
+# webscraping function
 def get_data(url, raw_path, percent_path):
     # adds link to be web-scraped
     driver.get(url)
@@ -149,7 +150,7 @@ html_string = '''<!DOCTYPE html>
 <p><span style="font-weight: 400;">{html_lythcotthaims_pct}</span></p>
 <p><span style="font-weight: 400;">Lisa Forssell: {html_forssell_num}</span></p>
 <p>{html_forssell_pct}</p>
-<p><span style="font-weight: 400;">Doria Summa:</span>{html_summa_num}</p>
+<p><span style="font-weight: 400;">Doria Summa: </span>{html_summa_num}</p>
 <p><span style="font-weight: 400;">{html_summa_pct}</span></p>
 <p><span style="font-weight: 400;">Alex Comsa: {html_comsa_num}</span></p>
 <p><span style="font-weight: 400;">{html_comsa_pct}</span></p>
