@@ -197,3 +197,8 @@ html_string = '''<!DOCTYPE html>
     html_campos_pct=campos_pct
 )
 
+# override html file with updated content
+f = open("display_results.html", "w")
+f.write(html_string)
+f.close()
+
