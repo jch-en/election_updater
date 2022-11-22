@@ -198,7 +198,7 @@ html_string = '''<!DOCTYPE html>
 )
 
 # override html file with updated content
-f = open("display_results.html", "w")
+f = open("index.html", "w")
 f.write(html_string)
 f.close()
 
