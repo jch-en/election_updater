@@ -131,3 +131,69 @@ def last_updated():
     return statement
 
 
+# use String format method to alter html
+html_string = '''<!DOCTYPE html>
+<span class="storycontent"><p><i><span style="font-weight: 400;">{html_last_updated}</span></i></p>
+<p><span style="font-weight: 400;">Here are the live results of this year’s elections so far from {html_turnout_num} ballots cast, accounting for {html_turnout_pct} of <a href="https://results.enr.clarityelections.com/CA/Santa_Clara/115971/web.307039/#/turnout">registered voters</a></span><span style="font-weight: 400;">.&nbsp;</span></p>
+<p><a href="https://results.enr.clarityelections.com/CA/Santa_Clara/115971/web.307039/#/detail/70"><b>Sheriff</b></a><b> (one open seat)</b></p>
+<p><span style="font-weight: 400;">Robert ‘Bob’ Jonsen: {html_robert_jonsen_num}</span></p>
+<p>{html_robert_jonsen_pct}</p>
+<p><span style="font-weight: 400;">Kevin Jensen: {html_kevin_jensen_num}</span></p>
+<p>{html_kevin_jensen_pct}</p>
+<p><a href="https://results.enr.clarityelections.com/CA/Santa_Clara/115971/web.307039/#/detail/84"><b>City Council</b></a><b> (three open seats)</b></p>
+<p><span style="font-weight: 400;">Vicki Veenker: {html_veenker_num}</span></p>
+<p><span style="font-weight: 400;">{html_veenker_pct}</span></p>
+<p><span style="font-weight: 400;">Ed Lauing: {html_lauing_num}</span></p>
+<p><span style="font-weight: 400;">{html_lauing_pct}</span></p>
+<p><span style="font-weight: 400;">Julie Lythcott-Haims: {html_lythcotthaims_num}</span></p>
+<p><span style="font-weight: 400;">{html_lythcotthaims_pct}</span></p>
+<p><span style="font-weight: 400;">Lisa Forssell: {html_forssell_num}</span></p>
+<p>{html_forssell_pct}</p>
+<p><span style="font-weight: 400;">Doria Summa:</span>{html_summa_num}</p>
+<p><span style="font-weight: 400;">{html_summa_pct}</span></p>
+<p><span style="font-weight: 400;">Alex Comsa: {html_comsa_num}</span></p>
+<p><span style="font-weight: 400;">{html_comsa_pct}</span></p>
+<p><span style="font-weight: 400;">Brian Hamachek: {html_hamachek_num}</span></p>
+<p><span style="font-weight: 400;">{html_hamachek_pct}</span></p>
+<p><a href="https://results.enr.clarityelections.com/CA/Santa_Clara/115971/web.307039/#/detail/43"><b>School Board</b></a><b> (two open seats)</b></p>
+<p><span style="font-weight: 400;">Shana Segal: {html_segal_num}</span></p>
+<p>{html_segal_pct}</p>
+<p><span style="font-weight: 400;">Shounak Dharap: {html_dharap_num}</span></p>
+<p><span style="font-weight: 400;">{html_dharap_pct}</span></p>
+<p><span style="font-weight: 400;">Nicole Chiu-Wang: {html_chiuwang_num}</span></p>
+<p>{html_chiuwang_pct}</p>
+<p><span style="font-weight: 400;">Ingrid Campos: {html_campos_num}</span></p>
+<p>{html_campos_pct}</p>
+</span>
+'''.format(
+    html_last_updated=last_updated(),
+    html_turnout_num=turnout_num,
+    html_turnout_pct=turnout_pct,
+    html_robert_jonsen_num=robert_jonsen_num,
+    html_robert_jonsen_pct=robert_jonsen_pct,
+    html_kevin_jensen_num=kevin_jensen_num,
+    html_kevin_jensen_pct=kevin_jensen_pct,
+    html_veenker_num=veenker_num,
+    html_veenker_pct=veenker_pct,
+    html_lauing_num=lauing_num,
+    html_lauing_pct=lauing_pct,
+    html_lythcotthaims_num=lythcotthaims_num,
+    html_lythcotthaims_pct=lythcotthaims_pct,
+    html_forssell_num=forssell_num,
+    html_forssell_pct=forssell_pct,
+    html_summa_num=summa_num,
+    html_summa_pct=summa_pct,
+    html_comsa_num=comsa_num,
+    html_comsa_pct=comsa_pct,
+    html_hamachek_num=hamachek_num,
+    html_hamachek_pct=hamachek_pct,
+    html_segal_num=segal_num,
+    html_segal_pct=segal_pct,
+    html_dharap_num=dharap_num,
+    html_dharap_pct=dharap_pct,
+    html_chiuwang_num=chiuwang_num,
+    html_chiuwang_pct=chiuwang_pct,
+    html_campos_num=campos_num,
+    html_campos_pct=campos_pct
+)
+
