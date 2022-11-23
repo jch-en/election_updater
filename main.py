@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from git import Repo
+# from git import Repo
 
 # global variables of voting data
 turnout_num = None
@@ -44,7 +44,7 @@ segal_pct = None
 # webscraping function
 def get_data(url, raw_path, percent_path):
     # creates driver instance
-    s = Service("/usr/local/bin/chromedriver")
+    s = Service("C:\Windows\chromedriver.exe")
     driver = webdriver.Chrome(service=s)
     # adds link to be web-scraped
     driver.get(url)
@@ -172,7 +172,10 @@ def last_updated():
     # get numerical day
     day = dt.day
     # get current time, in AP format
-    time = dt.strftime('%-I:%M')
+    hours = dt.strftime('%I')
+    if hours[0] == '0':
+        hours = hours[1:]
+    time = hours + ':' + dt.strftime('%M')
     if dt.strftime('%p') == 'AM':
         time = time + ' a.m.'
     if dt.strftime('%p') == 'PM':
@@ -258,21 +261,21 @@ def write_to_html():
     f.close()
 
 
-# setting up for automated git push
-PATH_OF_GIT_REPO = r'/Users/jonathan/PycharmProjects/election_updater/.git'  # make sure .git folder is properly configured
-COMMIT_MESSAGE = 'comment from automated python script'
-
-
-# automate push to git
-def git_push():
-    try:
-        repo = Repo(PATH_OF_GIT_REPO)
-        repo.git.add(update=True)
-        repo.index.commit(COMMIT_MESSAGE)
-        origin = repo.remote(name='origin')
-        origin.push()
-    except Exception:
-        print('Some error occured while pushing the code')
+# # setting up for automated git push
+# PATH_OF_GIT_REPO = r'/Users/jonathan/PycharmProjects/election_updater/.git'  # make sure .git folder is properly configured
+# COMMIT_MESSAGE = 'comment from automated python script'
+#
+#
+# # automate push to git
+# def git_push():
+#     try:
+#         repo = Repo(PATH_OF_GIT_REPO)
+#         repo.git.add(update=True)
+#         repo.index.commit(COMMIT_MESSAGE)
+#         origin = repo.remote(name='origin')
+#         origin.push()
+#     except Exception:
+#         print('Some error occured while pushing the code')
 
 
 # repeatable function that updates the HTML file
@@ -282,11 +285,11 @@ def complete_update_website():
     # ensuring function works
     print(get_html_string())
 
-
-# update html file every 5mins
-schedule.every(5).minutes.do(complete_update_website)
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+complete_update_website()
+# # update html file every 5mins
+# schedule.every(5).minutes.do(complete_update_website)
+#
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
 
