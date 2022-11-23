@@ -265,14 +265,14 @@ COMMIT_MESSAGE = 'comment from automated python script'
 
 # automate push to git
 def git_push():
-    try:
+    # try:
         repo = Repo(PATH_OF_GIT_REPO)
         repo.git.add(update=True)
         repo.index.commit(COMMIT_MESSAGE)
         origin = repo.remote(name='origin')
         origin.push()
-    except Exception:
-        print('Some error occured while pushing the code')
+    # except Exception:
+    #     print('Some error occured while pushing the code')
 
 
 git_push()
