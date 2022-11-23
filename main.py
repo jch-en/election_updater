@@ -137,7 +137,8 @@ def update_vote_count():
 
     # lythcott-haims data
     global lythcotthaims_num, lythcotthaims_pct
-    lythcotthaims_num, lythcotthaims_pct = get_data(city_council_url, lythcotthaims_raw_path, lythcotthaims_percent_path)
+    lythcotthaims_num, lythcotthaims_pct = get_data(city_council_url, lythcotthaims_raw_path,
+                                                    lythcotthaims_percent_path)
 
     # lauing data
     global lauing_num, lauing_pct
@@ -167,7 +168,8 @@ def last_updated():
     weekday_list = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     day_of_week = weekday_list[dt.weekday()]
     # get current month
-    month_list = ["Jan. ", "Feb. ", "March ", "April ", "May ", "June", "July", "Aug. ", "Sept. ", "Oct. ", "Nov. ", "Dec. "]
+    month_list = ["Jan. ", "Feb. ", "March ", "April ", "May ", "June", "July", "Aug. ", "Sept. ", "Oct. ", "Nov. ",
+                  "Dec. "]
     month = month_list[dt.month - 1]
     # get numerical day
     day = dt.day
@@ -188,6 +190,14 @@ def last_updated():
 # use String format method to alter html
 def get_html_string():
     my_string = '''<!DOCTYPE html>
+    <style>
+    p {{
+        font-family: "EB Garamond"
+        color: black;
+        font-size: 16.7px;
+        line-height: 25.2px
+        }}
+    </style>
     <span class="storycontent"><p><i><span style="font-weight: 400;">{html_last_updated}</span></i></p>
     <p><span style="font-weight: 400;">Here are the live results of this year's elections so far from {html_turnout_num} ballots cast, accounting for {html_turnout_pct} of <a href="https://results.enr.clarityelections.com/CA/Santa_Clara/115971/web.307039/#/turnout">registered voters</a></span><span style="font-weight: 400;">.&nbsp;</span></p>
     <p><a href="https://results.enr.clarityelections.com/CA/Santa_Clara/115971/web.307039/#/detail/70"><b>Sheriff</b></a><b> (one open seat)</b></p>
@@ -285,10 +295,10 @@ def complete_update_website():
     git_push()
 
 
-# update html file every hour
+# update html file when run and then every hour
+complete_update_website()
 schedule.every(1).hour.do(complete_update_website)
 
 while True:
     schedule.run_pending()
     time.sleep(1)
-
