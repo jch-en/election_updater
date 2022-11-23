@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-# from git import Repo
+from git import Repo
 
 # global variables of voting data
 turnout_num = None
@@ -261,27 +261,28 @@ def write_to_html():
     f.close()
 
 
-# # setting up for automated git push
-# PATH_OF_GIT_REPO = r'/Users/jonathan/PycharmProjects/election_updater/.git'  # make sure .git folder is properly configured
-# COMMIT_MESSAGE = 'comment from automated python script'
-#
-#
-# # automate push to git
-# def git_push():
-#     try:
-#         repo = Repo(PATH_OF_GIT_REPO)
-#         repo.git.add(update=True)
-#         repo.index.commit(COMMIT_MESSAGE)
-#         origin = repo.remote(name='origin')
-#         origin.push()
-#     except Exception:
-#         print('Some error occured while pushing the code')
+# setting up for automated git push
+PATH_OF_GIT_REPO = r"C:/Users/jonat/PycharmProjects/election_updater"  # make sure .git folder is properly configured
+COMMIT_MESSAGE = 'comment from automated python script'
+
+
+# automate push to git
+def git_push():
+    try:
+        repo = Repo(PATH_OF_GIT_REPO)
+        repo.git.add(update=True)
+        repo.index.commit(COMMIT_MESSAGE)
+        origin = repo.remote(name='origin')
+        origin.push()
+    except Exception:
+        print('Some error occured while pushing the code')
 
 
 # repeatable function that updates the HTML file
 def complete_update_website():
     update_vote_count()
     write_to_html()
+    git_push()
     # ensuring function works
     print(get_html_string())
 
