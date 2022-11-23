@@ -194,8 +194,8 @@ def get_html_string():
     p {{
         font-family: "EB Garamond"
         color: black;
-        font-size: 1.4em;
-        line-height: 1.5em
+        font-size: 22.4px;
+        line-height: 24px
         }}
     </style>
     <span class="storycontent"><p><i><span style="font-weight: 400;">{html_last_updated}</span></i></p>
