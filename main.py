@@ -189,9 +189,9 @@ def last_updated():
 def get_html_string():
     my_string = '''<!DOCTYPE html>
     <span class="storycontent"><p><i><span style="font-weight: 400;">{html_last_updated}</span></i></p>
-    <p><span style="font-weight: 400;">Here are the live results of this year’s elections so far from {html_turnout_num} ballots cast, accounting for {html_turnout_pct} of <a href="https://results.enr.clarityelections.com/CA/Santa_Clara/115971/web.307039/#/turnout">registered voters</a></span><span style="font-weight: 400;">.&nbsp;</span></p>
+    <p><span style="font-weight: 400;">Here are the live results of this year's elections so far from {html_turnout_num} ballots cast, accounting for {html_turnout_pct} of <a href="https://results.enr.clarityelections.com/CA/Santa_Clara/115971/web.307039/#/turnout">registered voters</a></span><span style="font-weight: 400;">.&nbsp;</span></p>
     <p><a href="https://results.enr.clarityelections.com/CA/Santa_Clara/115971/web.307039/#/detail/70"><b>Sheriff</b></a><b> (one open seat)</b></p>
-    <p><span style="font-weight: 400;">Robert ‘Bob’ Jonsen: {html_robert_jonsen_num}</span></p>
+    <p><span style="font-weight: 400;">Robert 'Bob' Jonsen: {html_robert_jonsen_num}</span></p>
     <p>{html_robert_jonsen_pct}</p>
     <p><span style="font-weight: 400;">Kevin Jensen: {html_kevin_jensen_num}</span></p>
     <p>{html_kevin_jensen_pct}</p>
@@ -283,14 +283,12 @@ def complete_update_website():
     update_vote_count()
     write_to_html()
     git_push()
-    # ensuring function works
-    print(get_html_string())
 
-complete_update_website()
-# # update html file every 5mins
-# schedule.every(5).minutes.do(complete_update_website)
-#
-# while True:
-#     schedule.run_pending()
-#     time.sleep(1)
+
+# update html file every hour
+schedule.every(1).hour.do(complete_update_website)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
 
