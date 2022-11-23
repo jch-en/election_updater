@@ -185,6 +185,15 @@ def last_updated():
 # use String format method to alter html
 def get_html_string():
     my_string = '''<!DOCTYPE html>
+    <head>
+    <style>
+        p {{
+        font-family: "EB Garamond"
+        color: black;
+        font-size: 18px;
+        line-height: 
+        }}
+    </style>
     <span class="storycontent"><p><i><span style="font-weight: 400;">{html_last_updated}</span></i></p>
     <p><span style="font-weight: 400;">Here are the live results of this year’s elections so far from {html_turnout_num} ballots cast, accounting for {html_turnout_pct} of <a href="https://results.enr.clarityelections.com/CA/Santa_Clara/115971/web.307039/#/turnout">registered voters</a></span><span style="font-weight: 400;">.&nbsp;</span></p>
     <p><a href="https://results.enr.clarityelections.com/CA/Santa_Clara/115971/web.307039/#/detail/70"><b>Sheriff</b></a><b> (one open seat)</b></p>
@@ -279,12 +288,12 @@ def git_push():
 def complete_update_website():
     update_vote_count()
     write_to_html()
-    # ensuring function works
-    print(get_html_string())
+    git_push()
 
 
-# update html file every 5mins
-schedule.every(5).minutes.do(complete_update_website)
+# update html file on run & then every hour
+complete_update_website()
+schedule.every(1).hour.do(complete_update_website)
 
 while True:
     schedule.run_pending()
